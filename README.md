@@ -28,7 +28,7 @@ jobs:
       - name: 'Install yamllint'
         run: pip install yamllint
       - name: 'Yamllint'
-        uses: karancode/yamllint-github-action@master
+        uses: sosheskaz-systems/yamllint-github-action@master
         with:
           yamllint_file_or_dir: '<yaml_file_or_dir>'
           yamllint_strict: false
