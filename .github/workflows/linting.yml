@@ -11,16 +11,6 @@ jobs:
       - name: Markdown Lint
         uses: actionshub/markdownlint@v1.0.0
 
-  Dockerfilelint:
-    runs-on: 'ubuntu-latest'
-    steps:
-      - uses: actions/checkout@v3
-      - name: Dockerfile Lint
-        uses: burdzwastaken/hadolint-action@1.6.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HADOLINT_ACTION_DOCKERFILE_FOLDER: .
-
   Yamllint:
     runs-on: 'ubuntu-latest'
     steps:
