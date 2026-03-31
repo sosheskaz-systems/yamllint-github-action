@@ -2,10 +2,8 @@
 name: "Continuous Integration"
 on:
   push:
-    branches-ignore:
-      - 'dependabot/*'
-  schedule:
-    - cron: '22 22 * * 5'
+    branches:
+      - 'master'
   pull_request:
     branches:
       - 'master'
@@ -15,10 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install bats
-        run: sudo apt-get -y install bats > /dev/null
+      - name: Install dependencies
+        run: |
+          sudo apt-get -y install bats > /dev/null
+          pip install yamllint
       - name: Run CI script
-        run: ./tests/run.bats
+        run: ./run.bats
+        working-directory: ./tests
       - name: Run action
         uses: ./
         with:
