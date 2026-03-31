@@ -25,7 +25,7 @@ function setup() {
   unset INPUT_YAMLLINT_CONFIG_DATAPATH
   unset INPUT_YAMLLINT_FORMAT
   unset INPUT_YAMLLINT_COMMENT
-  export ROOT_DIR="${ROOT_DIR:-$(pwd)}"
+  export ROOT_DIR="${ROOT_DIR:-$(git rev-parse --show-toplevel)}"
   export GITHUB_OUTPUT_FILE="${GITHUB_OUTPUT_FILE:-$(mktemp -p "${BATS_TMPDIR}")}"
   cp /dev/null "${GITHUB_OUTPUT_FILE}"
   export GITHUB_OUTPUT="${GITHUB_OUTPUT_FILE}"
