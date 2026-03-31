@@ -25,8 +25,10 @@ jobs:
     steps:
       - name: 'Checkout'
         uses: actions/checkout@master
+      - name: 'Install yamllint'
+        run: pip install yamllint
       - name: 'Yamllint'
-        uses: karancode/yamllint-github-action@master
+        uses: sosheskaz-systems/yamllint-github-action@master
         with:
           yamllint_file_or_dir: '<yaml_file_or_dir>'
           yamllint_strict: false
@@ -67,4 +69,9 @@ Secrets are similar to inputs except that they are encrypted and only used by Gi
 ### Testing
 
 For testing the [bats](https://github.com/bats-core/bats-core) testing framework is used.
-Tests can be run with ``./tests/run.bats`` but first you need to install [bats](https://github.com/bats-core/bats-core#installation).
+First install the dependencies, then run the tests from the `tests/` directory:
+
+```bash
+pip install yamllint
+cd tests && ./run.bats
+```
