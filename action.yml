@@ -34,6 +34,18 @@ inputs:
 outputs:
   yamllint_output:
     description: 'Output of yamllint'
+    value: ${{ steps.lint.outputs.yamllint_output }}
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - name: Run yamllint
+      id: lint
+      shell: bash
+      run: ${{ github.action_path }}/src/entrypoint.sh
+      env:
+        INPUT_YAMLLINT_FILE_OR_DIR: ${{ inputs.yamllint_file_or_dir }}
+        INPUT_YAMLLINT_STRICT: ${{ inputs.yamllint_strict }}
+        INPUT_YAMLLINT_CONFIG_FILEPATH: ${{ inputs.yamllint_config_filepath }}
+        INPUT_YAMLLINT_CONFIG_DATAPATH: ${{ inputs.yamllint_config_datapath }}
+        INPUT_YAMLLINT_FORMAT: ${{ inputs.yamllint_format }}
+        INPUT_YAMLLINT_COMMENT: ${{ inputs.yamllint_comment }}
